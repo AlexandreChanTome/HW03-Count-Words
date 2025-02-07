@@ -1,6 +1,8 @@
 // Modify this file
 
 #include "count_words.h"
+#include <stdio.h>
+#include <string.h>
 
 /*
 Arguments:
@@ -10,13 +12,19 @@ Arguments:
     size: size of line
 
 Return:
-    frequency of word in file (subject to below constraints)    
+    frequency of word in file (it subject to below constraints)    
 */
 int countWord(char* filename, char* word, char* line, int size)
 {
     // Open a file whose name is filename for reading
     // If fopen fails, return -1. 
     // Else, set ret to zero
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        return -1;  // To return -1 if fopen fails
+    }
+    
+    int ret = 0;  // Variable to store the word count
     
     // Use fgets to read the file in line-by-line
     // If the word appears in the line, increment ret
